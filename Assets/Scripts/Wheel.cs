@@ -57,13 +57,13 @@ public class Wheel : MonoBehaviour
 
             GameObject spawnedTriangle = Instantiate(trianglePrefab,
                 new Vector3(0.0f, -0.01f, 0.0f), 
-                new Quaternion(.0f, .0f, 0.0f, 0.0f));
+                Quaternion.identity);
 
             DrawTriangle triangleScript = spawnedTriangle.GetComponent<DrawTriangle>();
 
-            triangleScript.UpdateTriangle(
-                new Vector3(-3.0f, 0.5f, .0f), 
-                item.itemColor);
+            // triangleScript.UpdateTriangle(
+            //     new Vector3(-3.0f, 0.5f, .0f), 
+            //     item.itemColor);
 
             float itemAngle = PercentageToDegreeAngle(item.itemPercentage);
             spawnedMark.GetComponent<Transform>().Rotate(Vector3.forward, startingAngle + itemAngle);
@@ -115,12 +115,12 @@ public class Wheel : MonoBehaviour
 
         string json = JsonUtility.ToJson(wheels);
         
-        File.WriteAllText("S:/UnityProjects/PERSONAL_PROJECTS/Roue/Assets/Scripts/wheelsPatterns.json", json);
+        File.WriteAllText("S:/UnityProjects/PERSONAL_PROJECTS/Oreyawheel/Assets/Scripts/wheelsPatterns.json", json);
     }
     
     void RetrieveData()
     {
-        string jsonPath = File.ReadAllText("S:/UnityProjects/PERSONAL_PROJECTS/Roue/Assets/Scripts/wheelsPatterns.json");
+        string jsonPath = File.ReadAllText("S:/UnityProjects/PERSONAL_PROJECTS/Oreyawheel/Assets/Scripts/wheelsPatterns.json");
         
         AllWheels allWheels = JsonUtility.FromJson<AllWheels>(jsonPath);
         WheelItems[] wheels = allWheels.allWheels;
