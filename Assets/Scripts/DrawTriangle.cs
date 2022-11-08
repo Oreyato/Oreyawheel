@@ -19,6 +19,11 @@ public class DrawTriangle : MonoBehaviour {
         mf.mesh = m;
         
         startingPos = new Vector3(-3, 0, 0);
+        
+        Draw();
+        
+        // Change material color
+        gameObject.GetComponent<Renderer>().material.color = color;
     }
 
     public void UpdateTriangle(Vector3 endingPosP, Color colorP)
