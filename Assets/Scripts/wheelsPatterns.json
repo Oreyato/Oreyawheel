@@ -1,0 +1,14 @@
+{"allWheels":
+[{"wheelOwner":0,"wheelItems":[
+    {"itemName":"0 gift","itemPercentage":5.0,"itemColor":{"r":1.0,"g":0.0,"b":0.0,"a":0.0}},
+    {"itemName":"1 gift","itemPercentage":85.0,"itemColor":{"r":0.0,"g":1.0,"b":0.0,"a":0.0}},
+    {"itemName":"2 gifts","itemPercentage":10.0,"itemColor":{"r":0.0,"g":0.0,"b":1.0,"a":0.0}}
+  ]},
+  {"wheelOwner":1,"wheelItems":[
+    {"itemName":"0 gift","itemPercentage":2.5,"itemColor":{"r":0.5,"g":0.0,"b":0.0,"a":0.0}},
+    {"itemName":"1 gift","itemPercentage":10.0,"itemColor":{"r":0.0,"g":0.5,"b":0.0,"a":0.0}},
+    {"itemName":"2 gifts","itemPercentage":40.0,"itemColor":{"r":0.0,"g":0.0,"b":0.5,"a":0.0}},
+    {"itemName":"3 gifts","itemPercentage":35.0,"itemColor":{"r":1.0,"g":0.0,"b":0.0,"a":0.0}},
+    {"itemName":"4 gifts","itemPercentage":10.0,"itemColor":{"r":0.0,"g":1.0,"b":0.0,"a":0.0}},
+    {"itemName":"5 gifts","itemPercentage":2.5,"itemColor":{"r":0.0,"g":0.0,"b":1.0,"a":0.0}}
+  ]}]}
