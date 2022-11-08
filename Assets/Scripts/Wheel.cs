@@ -61,9 +61,9 @@ public class Wheel : MonoBehaviour
 
             DrawTriangle triangleScript = spawnedTriangle.GetComponent<DrawTriangle>();
 
-            // triangleScript.UpdateTriangle(
-            //     new Vector3(-3.0f, 0.5f, .0f), 
-            //     item.itemColor);
+            triangleScript.UpdateTriangle(
+                new Vector3(-3.0f, 0.5f, .0f), 
+                item.itemColor);
 
             float itemAngle = PercentageToDegreeAngle(item.itemPercentage);
             spawnedMark.GetComponent<Transform>().Rotate(Vector3.forward, startingAngle + itemAngle);
