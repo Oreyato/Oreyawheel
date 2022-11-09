@@ -786,4 +786,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   markPrefab: {fileID: 1617798286271845034, guid: 003b637871414b94dade0fc44a995f89, type: 3}
   trianglePrefab: {fileID: 8707184575331928708, guid: 075a19e1020316948967110689926a6c, type: 3}
-  wheelOwner: 1
+  wheelOwner: 0

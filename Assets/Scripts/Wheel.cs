@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Net;
+using Palmmedia.ReportGenerator.Core.Parser.Analysis;
 using UnityEngine;
 
 [System.Serializable]
@@ -115,14 +116,29 @@ public class Wheel : MonoBehaviour
 
         string json = JsonUtility.ToJson(wheels);
         
-        File.WriteAllText("S:/UnityProjects/PERSONAL_PROJECTS/Oreyawheel/Assets/Scripts/wheelsPatterns.json", json);
+        // if no save exists yet, create a new file at saves location
+        if (!File.Exists(Application.dataPath + "wheelsPatterns.json"))
+        {
+            File.Create(Application.dataPath + "wheelsPatterns.json");
+        }
+
+        File.WriteAllText(Application.dataPath + "wheelsPatterns.json", json);
     }
     
     void RetrieveData()
     {
-        string jsonPath = File.ReadAllText("S:/UnityProjects/PERSONAL_PROJECTS/Oreyawheel/Assets/Scripts/wheelsPatterns.json");
-        
-        AllWheels allWheels = JsonUtility.FromJson<AllWheels>(jsonPath);
+        string jsonFile="";
+        //if no save exists, take default resource file
+        if (!File.Exists(Application.dataPath + "wheelsPatterns.json"))
+        {
+            TextAsset file  = Resources.Load<TextAsset>("wheelsPatterns");
+            jsonFile = file.text;
+        }
+        else
+        {
+            jsonFile = File.ReadAllText(Application.dataPath + "wheelsPatterns.json");
+        }
+        AllWheels allWheels = JsonUtility.FromJson<AllWheels>(jsonFile);
         WheelItems[] wheels = allWheels.allWheels;
 
         foreach (var wheel in wheels)

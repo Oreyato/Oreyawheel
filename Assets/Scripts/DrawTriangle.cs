@@ -12,7 +12,7 @@ public class DrawTriangle : MonoBehaviour {
     [SerializeField] private Color color;
 
     // Use this for initialization
-    void Start ()
+    void Awake ()
     {
         mf = GetComponent<MeshFilter>();
         m = new Mesh();
