@@ -34,14 +34,24 @@ public class Wheel : MonoBehaviour
 {
     [SerializeField] private GameObject markPrefab;
     [SerializeField] private GameObject trianglePrefab;
-
+    [SerializeField] private GameObject arrow;
+    
     [SerializeField] private WheelOwner wheelOwner;
     
     private WheelItem[] wheelItems;
 
+    private bool launched = false;
+
+    private float arrowRotationSpeed;
+    private float arrowRotationZ;
+    private float angularDrag;
+    
     // Start is called before the first frame update
     void Start()
     {
+        // Remove constraint on maximum angular velocity
+        arrow.GetComponent<Rigidbody>().maxAngularVelocity = 1000.0f;
+        
         RetrieveData();
         CreateWheel();
     }
@@ -49,30 +59,40 @@ public class Wheel : MonoBehaviour
     void CreateWheel()
     {
         float startingAngle = 0f;
+        Vector3 startingPos = new Vector3(-3.0f, 0.0f, 0.0f);
+        Vector3 endingPos = new Vector3(-4.5f, 1.0f, 0.0f);
         
         foreach (var item in wheelItems)
         { 
+            // Instantiate mark
             GameObject spawnedMark = Instantiate(markPrefab, 
                 new Vector3(0.0f, -0.01f, 0.0f), 
                 new Quaternion(.0f, -180.0f, 0.0f, 0.0f));
-
+            // Instantiate color background
             GameObject spawnedTriangle = Instantiate(trianglePrefab,
-                new Vector3(0.0f, -0.01f, 0.0f), 
+                Vector3.zero, 
                 Quaternion.identity);
 
-            DrawTriangle triangleScript = spawnedTriangle.GetComponent<DrawTriangle>();
-
-            triangleScript.UpdateTriangle(
-                new Vector3(-3.0f, 0.5f, .0f), 
-                item.itemColor);
-
+            // Stock mark end position before its rotation
+            startingPos = spawnedMark.transform.GetChild(0).gameObject.GetComponent<Transform>().position;
+            
+            // Update mark position and color
             float itemAngle = PercentageToDegreeAngle(item.itemPercentage);
             spawnedMark.GetComponent<Transform>().Rotate(Vector3.forward, startingAngle + itemAngle);
+            
+            // Get mark end position after its rotation
+            endingPos = spawnedMark.transform.GetChild(0).gameObject.GetComponent<Transform>().position;
+            
+            // Change material colors
             GameObject spawnedMarkChild = spawnedMark.transform.GetChild(0).gameObject;
             spawnedMarkChild.GetComponent<Renderer>().material.color = item.itemColor;
             spawnedMarkChild = spawnedMark.transform.GetChild(1).gameObject;
             spawnedMarkChild.GetComponent<Renderer>().material.color = item.itemColor;
-
+            
+            // Update color background position and color
+            DrawTriangle triangleScript = spawnedTriangle.GetComponent<DrawTriangle>();
+            triangleScript.UpdateTriangle(startingPos, endingPos, item.itemColor);
+                
             startingAngle += itemAngle;
         }
     }
@@ -82,9 +102,33 @@ public class Wheel : MonoBehaviour
         return percentage * 360f / 100f;
     }
     
-    void LaunchWheel()
+    public void LaunchWheel()
     {
-        
+        if (launched)
+        {
+            // Stop arrow
+            launched = false;
+        }
+        else
+        {
+            // Start arrow rotation
+            launched = true;
+            
+            // Randomize arrow values
+            arrowRotationSpeed = Random.Range(6.0f, 10.0f);
+            arrowRotationZ = Random.Range(2.0f, 4.0f);
+            angularDrag = Random.Range(0.5f, 2.0f);
+
+            arrow.GetComponent<Rigidbody>().angularDrag = angularDrag;
+        }
+    }
+
+    private void Update()
+    {
+        if (launched)
+        {
+            arrow.GetComponent<Rigidbody>().AddRelativeTorque(Vector3.back * arrowRotationSpeed);
+        }
     }
 
     void ReturnWheelResult()

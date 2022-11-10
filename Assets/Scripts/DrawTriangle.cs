@@ -8,7 +8,7 @@ public class DrawTriangle : MonoBehaviour {
 
     private Vector3 originPos;
     private Vector3 startingPos;
-    [SerializeField] private Vector3 endingPos;
+    private Vector3 endingPos;
     [SerializeField] private Color color;
 
     // Use this for initialization
@@ -18,7 +18,8 @@ public class DrawTriangle : MonoBehaviour {
         m = new Mesh();
         mf.mesh = m;
         
-        startingPos = new Vector3(-3, 0, 0);
+        startingPos = new Vector3(-3.0f, 0.0f, 0.0f);
+        endingPos = new Vector3(-4.5f, 1.0f, 0.0f);
         
         Draw();
         
@@ -26,8 +27,9 @@ public class DrawTriangle : MonoBehaviour {
         gameObject.GetComponent<Renderer>().material.color = color;
     }
 
-    public void UpdateTriangle(Vector3 endingPosP, Color colorP)
+    public void UpdateTriangle(Vector3 startingPosP, Vector3 endingPosP, Color colorP)
     {
+        startingPos = startingPosP;
         endingPos = endingPosP;
         color = colorP;
         
