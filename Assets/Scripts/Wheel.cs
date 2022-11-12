@@ -1,13 +1,17 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using Palmmedia.ReportGenerator.Core.Parser.Analysis;
+using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [System.Serializable]
 public enum WheelOwner
 {
     General,
-    Paul
+    Paul,
+    Test
 }
 [System.Serializable]
 public struct AllWheels
@@ -62,41 +66,78 @@ public class Wheel : MonoBehaviour
         Vector3 startingPos = new Vector3(-3.0f, 0.0f, 0.0f);
         Vector3 endingPos = new Vector3(-4.5f, 1.0f, 0.0f);
         
+        // Create panels 
+        
+        
+        // Check if some angles are more than 30 degrees
+        CheckForThirtyDegreesAngle();
+
+        // Fill wheel
         foreach (var item in wheelItems)
-        { 
+        {
             // Instantiate mark
             GameObject spawnedMark = Instantiate(markPrefab, 
-                new Vector3(0.0f, -0.01f, 0.0f), 
+                new Vector3(0.0f, -0.01f, -0.10f), 
                 new Quaternion(.0f, -180.0f, 0.0f, 0.0f));
             // Instantiate color background
             GameObject spawnedTriangle = Instantiate(trianglePrefab,
                 Vector3.zero, 
                 Quaternion.identity);
-
-            // Stock mark end position before its rotation
-            startingPos = spawnedMark.transform.GetChild(0).gameObject.GetComponent<Transform>().position;
             
             // Update mark position and color
             float itemAngle = PercentageToDegreeAngle(item.itemPercentage);
             spawnedMark.GetComponent<Transform>().Rotate(Vector3.forward, startingAngle + itemAngle);
-            
+        
             // Get mark end position after its rotation
             endingPos = spawnedMark.transform.GetChild(0).gameObject.GetComponent<Transform>().position;
-            
+
             // Change material colors
             GameObject spawnedMarkChild = spawnedMark.transform.GetChild(0).gameObject;
             spawnedMarkChild.GetComponent<Renderer>().material.color = item.itemColor;
             spawnedMarkChild = spawnedMark.transform.GetChild(1).gameObject;
             spawnedMarkChild.GetComponent<Renderer>().material.color = item.itemColor;
-            
+        
             // Update color background position and color
             DrawTriangle triangleScript = spawnedTriangle.GetComponent<DrawTriangle>();
             triangleScript.UpdateTriangle(startingPos, endingPos, item.itemColor);
-                
+        
+            // Store mark end position
+            startingPos = endingPos;
+            
             startingAngle += itemAngle;
         }
     }
 
+    void CheckForThirtyDegreesAngle()
+    {
+        for (int i = 0; i < wheelItems.Length; i++)
+        {
+            float currentPercentage = wheelItems[i].itemPercentage;
+            
+            if (currentPercentage > 30.0f)
+            {
+                float nbToCreate = currentPercentage / 30.0f;
+                int nbToCreateInt = Convert.ToInt32(nbToCreate);
+                
+                Debug.Log(nbToCreate + " " + nbToCreateInt);
+
+                for (int j = 0; j < nbToCreateInt; j++)
+                {
+                    WheelItem newItem = wheelItems[i];
+                    newItem.itemPercentage = 30.0f;
+                    ArrayUtility.Insert(ref wheelItems, i, newItem);
+                }
+
+                WheelItem lastItem = wheelItems[i];
+                lastItem.itemPercentage = currentPercentage - (30 * nbToCreateInt);
+                ArrayUtility.Insert(ref wheelItems, i, lastItem);
+                
+                // Remove wheelItem[i]
+                ArrayUtility.Remove(ref wheelItems, wheelItems[i + nbToCreateInt + 1]);
+            }
+        }
+    }
+    
     float PercentageToDegreeAngle(float percentage)
     {
         return percentage * 360f / 100f;
