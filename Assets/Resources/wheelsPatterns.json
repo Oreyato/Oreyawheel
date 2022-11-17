@@ -1,16 +1,16 @@
 {"allWheels":
 [{"wheelOwner":0,"wheelItems":[
-    {"itemName":"0 gift","itemPercentage":5.0,"itemColor":{"r":1.0,"g":0.0,"b":0.0,"a":0.0}},
-    {"itemName":"1 gift","itemPercentage":85.0,"itemColor":{"r":0.0,"g":1.0,"b":0.0,"a":0.0}},
-    {"itemName":"2 gifts","itemPercentage":10.0,"itemColor":{"r":0.0,"g":0.0,"b":1.0,"a":0.0}}
+    {"itemName":"0 gift","itemPercentage":5.0,"itemColor":{"r":0.40,"g":0.45,"b":0.40,"a":0.0}},
+    {"itemName":"1 gift","itemPercentage":85.0,"itemColor":{"r":0.98,"g":0.74,"b":0.0,"a":0.0}},
+    {"itemName":"2 gifts","itemPercentage":10.0,"itemColor":{"r":0.98,"g":0.37,"b":0.13,"a":0.0}}
   ]},
   {"wheelOwner":1,"wheelItems":[
-    {"itemName":"0 gift","itemPercentage":2.5,"itemColor":{"r":0.5,"g":0.0,"b":0.0,"a":0.0}},
-    {"itemName":"1 gift","itemPercentage":10.0,"itemColor":{"r":0.0,"g":0.5,"b":0.0,"a":0.0}},
-    {"itemName":"2 gifts","itemPercentage":40.0,"itemColor":{"r":0.0,"g":0.0,"b":0.5,"a":0.0}},
-    {"itemName":"3 gifts","itemPercentage":35.0,"itemColor":{"r":1.0,"g":0.0,"b":0.0,"a":0.0}},
-    {"itemName":"4 gifts","itemPercentage":10.0,"itemColor":{"r":0.0,"g":1.0,"b":0.0,"a":0.0}},
-    {"itemName":"5 gifts","itemPercentage":2.5,"itemColor":{"r":0.0,"g":0.0,"b":1.0,"a":0.0}}
+    {"itemName":"0 gift","itemPercentage":2.5,"itemColor":{"r":0.41,"g":0.45,"b":0.40,"a":0.0}},
+    {"itemName":"1 gift","itemPercentage":10.0,"itemColor":{"r":0.30,"g":0.60,"b":0.88,"a":0.0}},
+    {"itemName":"2 gifts","itemPercentage":40.0,"itemColor":{"r":0.18,"g":0.50,"b":0.85,"a":0.0}},
+    {"itemName":"3 gifts","itemPercentage":35.0,"itemColor":{"r":0.1,"g":0.40,"b":0.83,"a":0.0}},
+    {"itemName":"4 gifts","itemPercentage":10.0,"itemColor":{"r":0.08,"g":0.35,"b":0.80,"a":0.0}},
+    {"itemName":"5 gifts","itemPercentage":2.5,"itemColor":{"r":0.02,"g":0.30,"b":0.77,"a":0.0}}
   ]},
   {"wheelOwner":2,"wheelItems":[
     {"itemName":"0 gift","itemPercentage":2.5,"itemColor":{"r":0.5,"g":0.0,"b":0.0,"a":0.0}},

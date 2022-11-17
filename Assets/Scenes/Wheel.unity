@@ -210,7 +210,6 @@ GameObject:
   - component: {fileID: 45970488}
   - component: {fileID: 45970487}
   - component: {fileID: 45970486}
-  - component: {fileID: 45970485}
   m_Layer: 0
   m_Name: WheelHider
   m_TagString: Untagged
@@ -218,20 +217,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &45970485
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 45970484}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &45970486
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2702,4 +2687,4 @@ MonoBehaviour:
   markPrefab: {fileID: 1617798286271845034, guid: 003b637871414b94dade0fc44a995f89, type: 3}
   trianglePrefab: {fileID: 8707184575331928708, guid: 075a19e1020316948967110689926a6c, type: 3}
   arrow: {fileID: 339263897}
-  wheelOwner: 1
+  wheelOwner: 0
